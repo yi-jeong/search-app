@@ -1,5 +1,6 @@
 'use client'
 import styled from '@emotion/styled';
+import Search from './search';
 
 const HeaderBox = styled.header`
     padding: 2rem 0; 
@@ -39,28 +40,7 @@ const HeaderTitle = styled.div`
     }
 `
 
-const SearchBox = styled.div`
-    padding: 3rem 0 2rem;
 
-    .search{ 
-        display: flex; 
-        align-items: center; 
-        border-bottom: 3px solid #ffb774; 
-    
-        .search-bar{ 
-            padding: 0 2rem; 
-            border: transparent; 
-            width: calc( 100% - 4rem - 65px ); height: 50px;
-        }
-
-        .submit-button{ 
-            width: 60px; height: 50px; 
-            font-size: 1.2rem; color: #777; 
-            background: transparent; 
-            border: transparent; 
-        }
-    }
-`
 
 const HashtagBox = styled.div`
     .hashtag-list{ 
@@ -89,14 +69,7 @@ export default function Header(){
                     </h1>
                 </div>
             </HeaderTitle>
-            <SearchBox>
-                <div className="container">
-                    <div className="search">
-                        <input type="text" className="search-bar" placeholder="검색어를 입력하세요." />
-                        <button className="submit-button" type="button"><i className="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </SearchBox>
+            <Search />
             <HashtagBox>
                 <div className="container">
                     <ul className="hashtag-list">
