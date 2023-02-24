@@ -1,38 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 나의 금수를 부탁해!
+> '함께 지내고 있는 반려동물, 이렇게 해주면 행복해할까?'  
+'갑자기 돌발 행동을 보이는 반려동물, 이럴 때 어떻게 대처해야하지?'  
+반려동물과 함께 지내면서 궁금한 것이 한두개가 아닐거예요.  
+그런 집사분들을 위해 반려동물 지식 공유 사이트를 만들었습니다.  
+궁금한 건 질문하고 검색해보아요!  
 
-## Getting Started
+---
 
-First, run the development server:
+## 환경설정
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+React + Next.js + TypeScript로 셋팅 했어요.  
+state: Recoil  
+style: Emotion  
+etc: Font-Awesome 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
