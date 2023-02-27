@@ -1,6 +1,8 @@
 'use client'
+import { postListData } from '@/recoil/atom';
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { atom, useRecoilState } from 'recoil';
 import Post from './post';
 
 const PostListWrap = styled.div`
@@ -13,11 +15,6 @@ const PostListBox = styled.ul`
     flex-wrap: wrap;
 `
 
-export interface PostInfo {
-    id: number,
-    title: string,
-    content: string
-}
 
 const postDatas = [
     {
@@ -68,7 +65,11 @@ const postDatas = [
 ]
 
 export default function PostList(){
-    const [postData, setPostData] = useState<PostInfo[] | null>(postDatas);
+    const [postData, setPostData] = useRecoilState(postListData);
+
+    useEffect(function(){
+        setPostData(postDatas); 
+    },[]);
 
     return(
         <PostListWrap>

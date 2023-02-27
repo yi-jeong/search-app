@@ -2,6 +2,9 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import useInputs from '@/hooks/useInput';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { autoSearchData, autoSearchFilterState } from '@/recoil/atom';
+import { autoSearchFilterDataState } from '@/recoil/seletor';
 
 const SearchBox = styled.div`
     padding: 3rem 0 2rem;
@@ -44,18 +47,22 @@ interface autoSearchDataType {
 
 
 export default function Search(){
-    const [autoSearchDatas, setAutoSearchDatas] = useState<autoSearchDataType[]>([]);
+    const setAutoSearchDatas = useSetRecoilState(autoSearchData);
+    const autoList = useRecoilValue(autoSearchFilterDataState);
+    const [filter, setFilter] = useRecoilState(autoSearchFilterState); 
     const [searchText, setSearchText] = useState<string | null | undefined>('');
-    const [fillter, setFillter] = useState<autoSearchDataType[]>([]);
+    
 
     const onChangeData = (e:React.FormEvent<HTMLInputElement>) => {
         setSearchText(e.currentTarget.value);
-        thisSearchAutoData(searchText);  
+        setFilter(e.currentTarget.value);  
+        console.log(autoList);
+        console.log(filter);
     };
 
     const dataInit = () => {
         fetch('/json/SearchDatas.json',{
-            method: 'GET'
+            method: 'GET',
         })
         .then( res => res.json() )
         .then( data => {
@@ -63,24 +70,19 @@ export default function Search(){
         })
     }
 
-    const thisSearchAutoData = (keyword:any) => {
-        let fillterData = autoSearchDatas.filter( (hi:autoSearchDataType) => { 
-            if(keyword) return hi.name.includes(keyword);
-        })
-
-        setFillter(fillterData);
-    }
-
     const autoSearchRander = () => {
         return(
             <SearchExampleBox>
                 <ul>     
                     {
-                        fillter.map( data => {
-                            return(
-                                <li key={data.id}>{data.name}</li>
-                            )
-                        } )
+                        autoList.length > 0 ?
+                            autoList.map( data => {
+                                return(
+                                    <li key={data.id}>{data.name}</li>
+                                )
+                            })
+                        :
+                        <li>검색결과가 없습니다.</li>
                     }                   
                 </ul>
             </SearchExampleBox>
@@ -90,10 +92,6 @@ export default function Search(){
     useEffect(()=>{
         dataInit();
     }, [])
-
-    useEffect(()=>{
-        console.log(fillter);
-    }, [fillter])
 
     return(
         <SearchBox>
