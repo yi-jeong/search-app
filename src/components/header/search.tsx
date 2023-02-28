@@ -1,10 +1,12 @@
 'use client'
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useInputs from '@/hooks/useInput';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { autoSearchData, autoSearchFilterState } from '@/recoil/atom';
+import { autoSearchData, autoSearchFilterState, postListFilterState } from '@/recoil/atom';
 import { autoSearchFilterDataState } from '@/recoil/seletor';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const SearchBox = styled.div`
     padding: 3rem 0 2rem;
@@ -49,16 +51,23 @@ interface autoSearchDataType {
 export default function Search(){
     const setAutoSearchDatas = useSetRecoilState(autoSearchData);
     const autoList = useRecoilValue(autoSearchFilterDataState);
-    const [filter, setFilter] = useRecoilState(autoSearchFilterState); 
+    const [searchFilter, setSearchFilter] = useRecoilState(autoSearchFilterState); 
+    const [postFilter, setPostFilter] = useRecoilState(postListFilterState);
     const [searchText, setSearchText] = useState<string | null | undefined>('');
+    const [filterResult, setFilterResult] = useState(false);
     
 
     const onChangeData = (e:React.FormEvent<HTMLInputElement>) => {
+        !e.currentTarget.value? setFilterResult(false) : setFilterResult(true);
+
         setSearchText(e.currentTarget.value);
-        setFilter(e.currentTarget.value);  
-        console.log(autoList);
-        console.log(filter);
+        setSearchFilter(e.currentTarget.value);  
     };
+
+    const searchSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
+        setPostFilter(searchFilter);
+        setFilterResult(false);
+    }
 
     const dataInit = () => {
         fetch('/json/SearchDatas.json',{
@@ -98,9 +107,12 @@ export default function Search(){
             <div className="container">
                 <div className="search">
                     <input type="text" className="search-bar" placeholder="검색어를 입력하세요." onChange={onChangeData} />
-                    <button className="submit-button" type="button"><i className="fa fa-search"></i></button>
+                    <button className="submit-button" type="button" onClick={searchSubmit}>
+                        <FontAwesomeIcon icon={faSearch} />
+                        <i className="fa fa-search"></i>
+                    </button>
                     {
-                        searchText && autoSearchRander()
+                        searchText && filterResult && autoSearchRander()
                     }
                 </div>
             </div>

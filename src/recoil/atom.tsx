@@ -16,6 +16,10 @@ export const postListData = atom<PostInfo[]>({
     default: [],
 });
 
+export const postListFilterState = atom({
+    key: "postListFilterState",
+    default: "",
+});
 
 export const autoSearchData = atom<autoSearchDataType[]>({
     key: 'autoSearchData',

@@ -1,8 +1,9 @@
 'use client'
-import { postListData } from '@/recoil/atom';
+import { postListData, postListFilterState } from '@/recoil/atom';
+import { postListFilterDataState } from '@/recoil/seletor';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { atom, useRecoilState } from 'recoil';
+import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import Post from './post';
 
 const PostListWrap = styled.div`
@@ -65,7 +66,9 @@ const postDatas = [
 ]
 
 export default function PostList(){
-    const [postData, setPostData] = useRecoilState(postListData);
+    const setPostData = useSetRecoilState(postListData);
+    const [filter, setFilter] = useRecoilState(postListFilterState);
+    const postList = useRecoilValue(postListFilterDataState);
 
     useEffect(function(){
         setPostData(postDatas); 
@@ -75,7 +78,7 @@ export default function PostList(){
         <PostListWrap>
             <div className="container">
                 <PostListBox>
-                    { postData?.map( info => {
+                    { postList?.map( info => {
                         return <Post key={info.id} info ={info}/>
                     }) }
                 </PostListBox>
