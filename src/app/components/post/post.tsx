@@ -1,7 +1,8 @@
 
 'use client'
 import styled from '@emotion/styled';
-import { PostInfo } from './postList';
+import { PostInfo } from '@/app/recoil/atom';
+import Link from 'next/link';
 
 const PostBox = styled.li`
     padding: 1.5rem 1rem; 
@@ -36,12 +37,17 @@ export default function Post({ info }:InfoProps){
 
     return(
         <PostBox>
-            <dl>
-                <dt className="title">{info.title}</dt>
-                <dd className="content">
-                    {info.content}
-                </dd>
-            </dl>
+            <Link href={{
+                pathname: `/detail/${info.id}`,
+                query: { id: `${info.id}` },
+            }} as ={`/detail/${info.id}`}>
+                <dl>
+                    <dt className="title">{info.title}</dt>
+                    <dd className="content">
+                        {info.content}
+                    </dd>
+                </dl>
+            </Link>
         </PostBox>
     )
 }

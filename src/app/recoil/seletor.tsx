@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { autoSearchData, autoSearchDataType, autoSearchFilterState, PostInfo, postListData, postListFilterState } from "./atom";
+import { autoSearchData, autoSearchDataType, autoSearchFilterState, postDetailSetState, PostInfo, postListData, postListFilterState } from "./atom";
 
 export const postListFilterDataState = selector<PostInfo[]>({
     key: "postListFilterDataState",
@@ -28,3 +28,15 @@ export const autoSearchFilterDataState = selector<autoSearchDataType[]>({
         return list.filter((el:autoSearchDataType) => el.name.includes(filter));
     },
 });
+
+export const postDetailSelect = selector<PostInfo[]>({
+    key: 'postDetailSelect',
+    get: ({get}) => {
+        const selectId = get(postDetailSetState);
+        const list = get(postListData);
+
+        const result = list.filter((el:PostInfo) => el.id == selectId);
+
+        return result;
+    }
+})

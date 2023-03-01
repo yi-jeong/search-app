@@ -26,7 +26,7 @@ const FooterBox = styled.footer`
     }
 `
 
-export default function footer(){
+export default function Footer(){
     return(
         <FooterBox>
             <div className="container">

@@ -1,9 +1,9 @@
 'use client'
-import { postListData, postListFilterState } from '@/recoil/atom';
-import { postListFilterDataState } from '@/recoil/seletor';
+import { postListData } from '@/app/recoil/atom';
+import { postListFilterDataState } from '@/app/recoil/seletor';
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
-import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import Post from './post';
 
 const PostListWrap = styled.div`
@@ -17,7 +17,7 @@ const PostListBox = styled.ul`
 `
 
 
-const postDatas = [
+export const postDatas = [
     {
         id: 0,
         title: "강아지 입양 전, 알아야할 사실",
@@ -67,7 +67,6 @@ const postDatas = [
 
 export default function PostList(){
     const setPostData = useSetRecoilState(postListData);
-    const [filter, setFilter] = useRecoilState(postListFilterState);
     const postList = useRecoilValue(postListFilterDataState);
 
     useEffect(function(){

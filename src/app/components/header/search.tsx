@@ -1,10 +1,10 @@
 'use client'
 import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
-import useInputs from '@/hooks/useInput';
+import useInputs from '@/app/hooks/useInput';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { autoSearchData, autoSearchFilterState, postListFilterState } from '@/recoil/atom';
-import { autoSearchFilterDataState } from '@/recoil/seletor';
+import { autoSearchData, autoSearchFilterState, postListFilterState } from '@/app/recoil/atom';
+import { autoSearchFilterDataState } from '@/app/recoil/seletor';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 

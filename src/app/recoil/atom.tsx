@@ -31,3 +31,12 @@ export const autoSearchFilterState = atom({
     default: "",
 });
 
+export const postDetailData = atom<PostInfo[]>({
+    key: 'postDetailData',
+    default: []
+})
+
+export const postDetailSetState = atom({
+    key: 'postDetailSetState',
+    default: 0
+})
