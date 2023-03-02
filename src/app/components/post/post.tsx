@@ -1,5 +1,5 @@
-
 'use client'
+
 import styled from '@emotion/styled';
 import { PostInfo } from '@/app/recoil/atom';
 import Link from 'next/link';

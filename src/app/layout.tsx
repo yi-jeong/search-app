@@ -1,6 +1,7 @@
 'use client'
 import { Global } from "@emotion/react"
 import { RecoilRoot } from "recoil"
+import DataInit from "./api/api"
 import { GlobalStyle } from "./assets/style/global-style"
 
 // export const metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <RecoilRoot>
           <Global styles={GlobalStyle} />
+          <DataInit />
           {children}
         </RecoilRoot>
       </body>

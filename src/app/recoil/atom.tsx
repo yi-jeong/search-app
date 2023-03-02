@@ -2,6 +2,7 @@ import { atom, selector } from "recoil";
 
 export interface PostInfo {
     id: number,
+    tag: string,
     title: string,
     content: string
 }

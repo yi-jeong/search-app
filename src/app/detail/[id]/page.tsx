@@ -1,6 +1,5 @@
 'use client'
 
-import { postDatas } from "@/app/components/post/postList";
 import { postDetailSetState, postListData } from "@/app/recoil/atom";
 import { postDetailSelect } from "@/app/recoil/seletor";
 import styled from "@emotion/styled";
@@ -34,11 +33,9 @@ export default function Detail(){
         return Number(pathName.replace('/detail/', ""));
     }
     const selectID = useSetRecoilState(postDetailSetState);
-    const setPostData = useSetRecoilState(postListData);
     const list = useRecoilValue(postDetailSelect);
 
     useEffect(()=>{
-        setPostData(postDatas);
         selectID(replaceID());
     },[])
 

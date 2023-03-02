@@ -64,7 +64,17 @@ export default function Search(){
         setSearchFilter(e.currentTarget.value);  
     };
 
+    const handleOnKeyPress = (e:React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            submitEvent();
+        }
+      };
+
     const searchSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
+        submitEvent();
+    }
+
+    const submitEvent = () => {
         setPostFilter(searchFilter);
         setFilterResult(false);
     }
@@ -106,7 +116,7 @@ export default function Search(){
         <SearchBox>
             <div className="container">
                 <div className="search">
-                    <input type="text" className="search-bar" placeholder="검색어를 입력하세요." onChange={onChangeData} />
+                    <input type="text" className="search-bar" placeholder="검색어를 입력하세요." onChange={onChangeData} onKeyPress={handleOnKeyPress} />
                     <button className="submit-button" type="button" onClick={searchSubmit}>
                         <FontAwesomeIcon icon={faSearch} />
                         <i className="fa fa-search"></i>
