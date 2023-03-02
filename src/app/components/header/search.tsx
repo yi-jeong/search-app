@@ -49,7 +49,6 @@ interface autoSearchDataType {
 
 
 export default function Search(){
-    const setAutoSearchDatas = useSetRecoilState(autoSearchData);
     const autoList = useRecoilValue(autoSearchFilterDataState);
     const [searchFilter, setSearchFilter] = useRecoilState(autoSearchFilterState); 
     const [postFilter, setPostFilter] = useRecoilState(postListFilterState);
@@ -79,16 +78,6 @@ export default function Search(){
         setFilterResult(false);
     }
 
-    const dataInit = () => {
-        fetch('/json/SearchDatas.json',{
-            method: 'GET',
-        })
-        .then( res => res.json() )
-        .then( data => {
-            setAutoSearchDatas(data);
-        })
-    }
-
     const autoSearchRander = () => {
         return(
             <SearchExampleBox>
@@ -107,10 +96,6 @@ export default function Search(){
             </SearchExampleBox>
         )
     }
-
-    useEffect(()=>{
-        dataInit();
-    }, [])
 
     return(
         <SearchBox>

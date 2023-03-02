@@ -3,6 +3,7 @@
 import { postDetailSetState, postListData } from "@/app/recoil/atom";
 import { postDetailSelect } from "@/app/recoil/seletor";
 import styled from "@emotion/styled";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -21,6 +22,12 @@ const DetailBox = styled.div`
     .con{
         padding: 2rem 0;
         line-height: 1.5rem;
+    }
+
+    a{ 
+        padding: 1rem; display:block; background: #ffb774;
+        border: 1px solid #ffb774; text-align: center; border-radius: .5rem; 
+        color: #fff;
     }
 `
 
@@ -51,6 +58,9 @@ export default function Detail(){
                         )
                     }) 
                 }
+                <div className="button-wrap">
+                    <Link href={"/"}>목록</Link>
+                </div>
             </div>
         </DetailBox>
         
