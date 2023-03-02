@@ -40,6 +40,13 @@ const SearchExampleBox = styled.div`
     width:calc( 100% - 2rem );
     background: #fff;
     border-bottom: 1px solid #ddd;
+
+    ul{
+        li{
+            padding: .3rem 0;
+            cursor: pointer;
+        }
+    }
 `
 
 interface autoSearchDataType {
@@ -51,7 +58,8 @@ interface autoSearchDataType {
 export default function Search(){
     const autoList = useRecoilValue(autoSearchFilterDataState);
     const [searchFilter, setSearchFilter] = useRecoilState(autoSearchFilterState); 
-    const [postFilter, setPostFilter] = useRecoilState(postListFilterState);
+    const [postFilterData, setPostFilterData] = useRecoilState(postListFilterState);
+    const [buttonFilter, setButtonFilter] = useState<string>("");
     const [searchText, setSearchText] = useState<string | null | undefined>('');
     const [filterResult, setFilterResult] = useState(false);
     
@@ -74,7 +82,14 @@ export default function Search(){
     }
 
     const submitEvent = () => {
-        setPostFilter(searchFilter);
+        setPostFilterData( { searchFilter: (searchFilter), buttonFilter: (buttonFilter) });  
+        setFilterResult(false);
+    }
+
+    const autoSearchClick = (e:React.MouseEvent) => {
+        let target = e.currentTarget.textContent || "";
+
+        setSearchFilter(target);
         setFilterResult(false);
     }
 
@@ -86,7 +101,7 @@ export default function Search(){
                         autoList.length > 0 ?
                             autoList.map( data => {
                                 return(
-                                    <li key={data.id}>{data.name}</li>
+                                    <li key={data.id} onClick={autoSearchClick}>{data.name}</li>
                                 )
                             })
                         :
@@ -101,7 +116,7 @@ export default function Search(){
         <SearchBox>
             <div className="container">
                 <div className="search">
-                    <input type="text" className="search-bar" placeholder="검색어를 입력하세요." onChange={onChangeData} onKeyPress={handleOnKeyPress} />
+                    <input value={searchFilter} type="text" className="search-bar" placeholder="검색어를 입력하세요." onChange={onChangeData} onKeyPress={handleOnKeyPress} />
                     <button className="submit-button" type="button" onClick={searchSubmit}>
                         <FontAwesomeIcon icon={faSearch} />
                         <i className="fa fa-search"></i>

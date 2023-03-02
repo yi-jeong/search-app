@@ -1,5 +1,6 @@
 'use client'
 import styled from '@emotion/styled';
+import HashTag from './hashTag';
 import Search from './search';
 
 const HeaderBox = styled.header`
@@ -42,21 +43,6 @@ const HeaderTitle = styled.div`
 
 
 
-const HashtagBox = styled.div`
-    .hashtag-list{ 
-        display: flex; gap: .5rem; flex-wrap: wrap; 
-
-        .hashtag{ 
-            padding: .3rem 1rem; 
-            background: #eaeaea;
-            border: transparent; 
-            border-radius: 50px; 
-            font-size: .9rem; 
-            font-weight: 300; 
-        }
-    }
-
-`
 
 export default function Header(){
     return(
@@ -70,21 +56,7 @@ export default function Header(){
                 </div>
             </HeaderTitle>
             <Search />
-            <HashtagBox>
-                <div className="container">
-                    <ul className="hashtag-list">
-                        <li><button className="hashtag" type="button">🐶 강아지</button></li>
-                        <li><button className="hashtag" type="button">🐱 고양이</button></li>
-                        <li><button className="hashtag" type="button">🐯 호랑이</button></li>
-                        <li><button className="hashtag" type="button">🐰 토끼</button></li>
-                        <li><button className="hashtag" type="button">🐼 팬더</button></li>
-                        <li><button className="hashtag" type="button">🐵 원숭이</button></li>
-                        <li><button className="hashtag" type="button">🐹 햄스터</button></li>
-                        <li><button className="hashtag" type="button">🐥 닭&병아리</button></li>
-                        <li><button className="hashtag" type="button">🐷 돼지</button></li>
-                    </ul>
-                </div>
-            </HashtagBox>
+            <HashTag />
         </HeaderBox>
     )
 }

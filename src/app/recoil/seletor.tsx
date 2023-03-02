@@ -5,13 +5,16 @@ export const postListFilterDataState = selector<PostInfo[]>({
     key: "postListFilterDataState",
     get: ({ get }) => {
         const filter = get(postListFilterState);
+        const searchKeyword = filter.searchFilter;
+        const buttonKeyword = filter.buttonFilter;
+
         const list = get(postListData);
   
         if(!filter){
             return list;
         }
 
-        return list.filter((el:PostInfo) => el.title.includes(filter));
+        return list.filter((el:PostInfo) => el.title.includes(searchKeyword) && el.tag.includes(buttonKeyword));
     },
 });
 
